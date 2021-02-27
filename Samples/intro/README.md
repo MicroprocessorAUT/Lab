@@ -35,7 +35,7 @@ LED is a very basic component. We setup a digital pin to INPUT mode, and then We
 #ifndef MY_LED_H
 #define MY_LED_H
 
-#include <Arduino.h>
+#include <Arduino.h> // **This include is necessary to use the specific Arduino functions and types (think of pinMode(), digitalWrite(), byte)**
 
 class Led {
   
