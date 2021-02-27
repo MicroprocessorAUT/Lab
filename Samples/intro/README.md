@@ -26,7 +26,7 @@ Go into the folder of your current Arduino program. Create 4 files:
 
 **All the source codes are available in intro section**
 
-# LED class
+# LED classes
 LED is a very basic component. We setup a digital pin to INPUT mode, and then We just need to set its state to HIGH (on) or LOW (off)
 
 ## Led.h 
@@ -69,7 +69,7 @@ Led::Led(byte pin) {
   init();
 }
 
-void Led::init() {
+void Led::init() {    // the initial state of LED is off
   pinMode(pin, OUTPUT);
   
   // Instead of writing digitalWrite(pin, LOW) here,
@@ -88,5 +88,8 @@ void Led::off() {
 
 ```
 **don't forget the <code>#include "Led.h"</code> to access the LED class**
-  
+ 
+# Button classes
+
+
   
