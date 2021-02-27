@@ -53,7 +53,7 @@ class Led {
 ```
 In this file we just write the class declaration. This makes the class much easier to understand and use.
 
-The header guards (first 2 lines, and last line) will make sure that the Led class will not be included more than once, if for example you have multiple '#include "Led.h"'
+The header guards (first 2 lines, and last line) will make sure that the Led class will not be included more than once, if for example you have multiple <code>#include "Led.h"</code>
 in other parts of your program.
 
 Also note that I’ve added '#include <Arduino.h>'
