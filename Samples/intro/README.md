@@ -92,7 +92,119 @@ void Led::off() {
 # Button classes
 
 The button is a little bit more complex, because we need to add a debounce functionality if we want it to remove the mechanical noise.
-you can read about debouncing <a href="https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce">here</a>
+You can read about debouncing <a href="https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce">here</a>.
 
+## Button.h
 
+```cpp
+#ifndef MY_BUTTON_H
+#define MY_BUTTON_H
+
+#include <Arduino.h>
+
+class Button {
+  
+  private:
+    byte pin;
+    byte state;
+    byte lastReading;
+    unsigned long lastDebounceTime = 0;
+    unsigned long debounceDelay = 50;
+    
+  public:
+    Button(byte pin);
+
+    void init();
+    void update();
+
+    byte getState();
+    bool isPressed();
+};
+
+#endif
+```
+
+## Button.cpp
+
+```cpp
+#include "Button.h"
+
+Button::Button(byte pin) {
+  this->pin = pin;
+  lastReading = LOW;
+  init();
+}
+
+void Button::init() {
+  pinMode(pin, INPUT);
+  update();
+}
+
+void Button::update() {
+    // You can handle the debounce of the button directly
+    // in the class, so you don't have to think about it
+    // elsewhere in your code
+    byte newReading = digitalRead(pin);
+    
+    if (newReading != lastReading) {
+      lastDebounceTime = millis();
+    }
+
+    if (millis() - lastDebounceTime > debounceDelay) {
+      // Update the 'state' attribute only if debounce is checked
+      state = newReading;
+    }
+
+    lastReading = newReading;
+}
+
+byte Button::getState() {
+  update();
+  return state;
+}
+
+bool Button::isPressed() {
+  return (getState() == HIGH);
+}
+
+```
+
+# Main
+
+```cpp
+#include "Led.h"
+#include "Button.h"
+
+#define LED_1_PIN 9
+#define LED_2_PIN 10
+#define LED_3_PIN 11
+#define LED_4_PIN 12
+
+#define BUTTON_PIN 5
+
+Led led1(LED_1_PIN);
+Led led2(LED_2_PIN);
+Led led3(LED_3_PIN);
+Led led4(LED_4_PIN);
+Button button1(BUTTON_PIN);
+
+void setup() { }
+
+void loop() {
+  if (button1.isPressed()) {
+    led1.on();
+    led2.off();
+    led3.on();
+    led4.off();
+  }
+  else {
+    led1.off();
+    led2.on();
+    led3.off();
+    led4.on();
+  }
+}
+
+```
+Well, as you can see, this code is now much clearer and readable. Also, you could import the Led and Button class in any other part of your application.
   
