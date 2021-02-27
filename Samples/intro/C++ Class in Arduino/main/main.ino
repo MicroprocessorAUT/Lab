@@ -1,5 +1,5 @@
-#include "Led.h"
-#include "Button.h"
+#include "src/Led/Led.h"
+#include "src/Button/Button.h"
 
 #define LED_1_PIN 6
 #define LED_2_PIN 5
@@ -13,9 +13,6 @@ Led led2(LED_2_PIN);
 Led led3(LED_3_PIN);
 Led led4(LED_4_PIN);
 Button button1(BUTTON_PIN);
-
-
-
 
 
 void setup() {
