@@ -35,7 +35,7 @@ LED is a very basic component. We setup a digital pin to INPUT mode, and then We
 #ifndef MY_LED_H
 #define MY_LED_H
 
-#include <Arduino.h> // **This include is necessary to use the specific Arduino functions and types (think of pinMode(), digitalWrite(), byte)**
+#include <Arduino.h> // This include is necessary 
 
 class Led {
   
@@ -51,4 +51,10 @@ class Led {
 
 #endif
 ```
+In this file we just write the class declaration. This makes the class much easier to understand and use.
 
+The header guards (first 2 lines, and last line) will make sure that the Led class will not be included more than once, if for example you have multiple '#include "Led.h"'
+in other parts of your program.
+
+Also note that I’ve added '#include <Arduino.h>'
+at the beginning. Why? This include is necessary to use the specific Arduino functions and types (think of pinMode(), digitalWrite(), byte). In the “main” file we don’t need to write it because it’s automatically added when you compile your code. But in any other file, you need to add it by yourself.
