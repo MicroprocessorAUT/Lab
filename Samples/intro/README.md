@@ -91,5 +91,8 @@ void Led::off() {
  
 # Button classes
 
+The button is a little bit more complex, because we need to add a debounce functionality if we want it to remove the mechanical noise.
+you can read about debouncing [here] : https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce
+
 
   
