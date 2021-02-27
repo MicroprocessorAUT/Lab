@@ -15,15 +15,40 @@ Now let's see how to program this arduino in the clearest way using classes
 As you see we have two components (LED and Button) so we need a class for each of this component to handle their functionalities so we’ll separate the code into 3 parts: the LED class, the Button class, and the “main”. **Each class will be on its own independent file.**
 For each class we'll have two files : cpp file (.cpp) and a header file (.h) in this way our code will become much more readable. 
 
-Note that creating other files for an Arduino program is quite tricky. You must create all your files inside your Arduino program folder. Example: if your program is named Test.ino, then it will be automatically saved on a Test/ folder (the Arduino IDE does that). You’ll have to put all your files in the Test/folder as well, so the Arduino IDE can find them.
+**Note that** creating other files for an Arduino program is quite tricky. You must create all your files inside your Arduino program folder. Example: if your program is named Test.ino, then it will be automatically saved on a Test/ folder (the Arduino IDE does that). You’ll have to put all your files in the Test/folder as well, so the Arduino IDE can find them.
 
 Go into the folder of your current Arduino program. Create 4 files:
 
-  * Bullet list Led.h
-  * Bullet list Led.cpp
-  * Bullet list Button.h
-  * Bullet list Button.cpp
+  * Led.h
+  * Led.cpp
+  * Button.h
+  * Button.cpp
 
+**All the source codes are available in intro section**
 
+# LED class
 LED is a very basic component. We setup a digital pin to INPUT mode, and then We just need to set its state to HIGH (on) or LOW (off)
+
+## Led.h 
+
+```cpp
+#ifndef MY_LED_H
+#define MY_LED_H
+
+#include <Arduino.h>
+
+class Led {
+  
+  private:
+    byte pin;
+    
+  public:
+    Led(byte pin);
+    void init();
+    void on();
+    void off();
+};
+
+#endif
+```
 
