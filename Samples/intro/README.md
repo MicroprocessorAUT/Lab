@@ -56,5 +56,37 @@ In this file we just write the class declaration. This makes the class much easi
 The header guards (first 2 lines, and last line) will make sure that the Led class will not be included more than once, if for example you have multiple <code>#include "Led.h"</code>
 in other parts of your program.
 
-Also note that I’ve added '#include <Arduino.h>'
+Also note that We’ve added <code>#include <Arduino.h></code>
 at the beginning. Why? This include is necessary to use the specific Arduino functions and types (think of pinMode(), digitalWrite(), byte). In the “main” file we don’t need to write it because it’s automatically added when you compile your code. But in any other file, you need to add it by yourself.
+  
+## Led.cpp
+
+```cpp
+#include "Led.h"
+
+Led::Led(byte pin) {
+  this->pin = pin;  //using 'this-> we make difference between the 'pin' attribute of the class and the local variable 'pin' '
+  init();
+}
+
+void Led::init() {
+  pinMode(pin, OUTPUT);
+  
+  // Instead of writing digitalWrite(pin, LOW) here,
+  // we call the function off() which already does that inorder to avoid duplicate code
+  
+  off();
+}
+
+void Led::on() {
+  digitalWrite(pin, HIGH); //As we mentioned this make the LED turn on
+}
+
+void Led::off() {
+  digitalWrite(pin, LOW); //This code make the LED turn off
+}
+
+```
+**don't forget the <code>#include "Led.h"</code> to access the LED class**
+  
+  
