@@ -24,9 +24,7 @@ Go into the folder of your current Arduino program. Create 4 files:
   * Button.h
   * Button.cpp
 
-**All the source codes are available in 
-Lab/Samples/Intro/C++ Class in Arduino (intro.)/main/
-**
+**All the source codes are available in Lab/Samples/Intro/C++ Class in Arduino (intro.)/main**
 
 # LED classes
 LED is a very basic component. We setup a digital pin to INPUT mode, and then We just need to set its state to HIGH (on) or LOW (off)
