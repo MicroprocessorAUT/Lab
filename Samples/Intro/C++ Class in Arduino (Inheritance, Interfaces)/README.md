@@ -1,79 +1,41 @@
 # Arduino Object Oriented Programming (OOP)
 
-In this part we make an alert using inheritance there are two classes "normalAlert" and "secutirtyAlert" which extend from alert class
+In this part we make an alert using inheritance there are two classes "normalBlinker" and "secutirtyBlinker" which extend from Blinker class
+
+Like first intro part we create class for our components and use them in the main file
 
 You can see the code below :
 
 ## main
 
 ```cpp
+#include "src/NormalBlinker.h"
+#include "src/SecurityBlinker.h"
+#include "src/Alert.h"
+
 const int led1 = 6;
+const int led2 = 7;
 const int button1 = 12; // security alert blinking 
 const int button2 = 11; // normal alert blinkin
-
-
-class alert{
-  public:
-  virtual void alertBlink();
-  virtual void off();
-};
-
-class normalAlert : public alert{
-   public:
-    void alertBlink(){
-      digitalWrite(led1, HIGH);
-      delay(1000);
-      digitalWrite(led1, LOW);
-    }
-
-    public:
-      void off(){
-        digitalWrite(led1 , LOW);
-      }
-  
-};
-
-class securityAlert : public alert{
-  public:
-    void alertBlink(){
-      digitalWrite(led1, HIGH);
-      delay(150);
-      digitalWrite(led1, LOW);
-    }
-
-  public:
-    void off(){
-      digitalWrite(led1 , LOW);
-     }
-  
-};
-
-
   
 void setup() {
   // put your setup code here, to run once:
   pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+
   pinMode(button1, INPUT);
   pinMode(button2, INPUT);
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  NormalBlinker nB(led1);
+  SecurityBlinker sB(led2);
 
-  normalAlert nA;
-  securityAlert sA;
-  if (digitalRead(button1) == HIGH){
-    sA.alertBlink();
-  }
+  Alert sA(button1, &sB);
+  Alert nA(button2, &nB);
 
-  else if(digitalRead(button2) == HIGH){
-    nA.alertBlink();
-  }
-  else {
-    nA.off();
-    sA.off();
-  }
-
+  sA.watch();
+  nA.watch();
 }
 ```
