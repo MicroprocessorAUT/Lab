@@ -52,13 +52,11 @@ void Alert::watch() {
 	}
 }
 ```
-The <code>Alert.h</code>, Note that for using an instance of <code>Blinker</code> class in <code>Alert</code>,
-member variable of type <code>Blinker*</code> is used, instead of <code>Blinker</code>.
-If we use variable type of <code>Blinker</code> then call to <code>alertBlink()</code> member function will result in execution of 
-base class's (aka parent, in this case Blinker) <code>alertBlink()</code> function.
+In <code>Alert.h</code>, note that for using an instance of <code>Blinker</code> class in <code>Alert</code>, instead of <code>Blinker</code>,use a member variable of type <code>Blinker*</code>.
+If we use variable type of <code>Blinker</code> then call to <code>alertBlink()</code> member function will result in execution of base class's (aka parent, in this case Blinker) <code>alertBlink()</code> function.
 This is unwanted because we have defined <code>alertBlink()</code> in Blinker as virtual function to force derived classes (aka children, Normal and Security Blinkers)
-to override the function, so that child class's implementation of <code>alertBlink()</code> be called.
-By not using pointer we are actually creating new variable within <code>Alert</code> which is in deed of type base class itself, and NOT derived class types anymore. So calling methods of this intance
+to override the function, so that child class's implementation of <code>alertBlink()</code>to be called.
+In case of not using pointer, we are actually creating new variable within <code>Alert</code> which is indeed of type base class itself, and NOT derived class types anymore. So calling methods like this,
 will execute base class function, and not child's implementation of the function.
  
 ## Alert.h
@@ -81,7 +79,9 @@ class Alert {
 };
 ```
 
-Then we have <code>NormalBlinker</code> and <code>SecurityBlinker</code> which both extend from Blinker as we mentioned lets see the code for each:
+Then we have <code>NormalBlinker</code> and <code>SecurityBlinker</code> which both extend from Blinker as we mentioned.
+
+lets see the code for each of them:
 ## NormalBlinker.cpp
 ```cpp
 #include "NormalBlinker.h"
@@ -104,7 +104,7 @@ void SecurityBlinker::alertBlink() {
 }
 ```
 
-And finally the <code>main</code> class that we create object of each blinker in it and call alert:
+And finally the <code>main</code> class that we created object of each blinker in it and call alert:
 
 ## main
 
