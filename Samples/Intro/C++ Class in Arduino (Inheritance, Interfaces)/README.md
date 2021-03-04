@@ -4,7 +4,77 @@ In this part we make an alert using inheritance there are two classes "normalBli
 
 Like first intro part we create class for our components and use them in the main file
 
-You can see the code below :
+Lets take a brief look:
+
+The <code>Blinker.cpp</code> has a function which turn the LED on and off with some delay that get in the input look the cpp file below
+
+## Blinker.cpp
+```cpp
+#include "Blinker.h"
+
+Blinker::Blinker() { }
+Blinker::Blinker(int ledPin) {
+  this->ledPin = ledPin;
+}
+
+void Blinker::blinkBy(int ms) {
+  digitalWrite(ledPin, HIGH);
+  delay(ms);
+  digitalWrite(ledPin, LOW);
+  delay(ms);
+}
+
+void Blinker::off(){
+  digitalWrite(ledPin , LOW);
+}
+
+void Blinker::alertBlink() { blinkBy(500); }
+```
+
+The <code>Alert.cpp</code> call the alertBlink whenever we pushed the button:
+## Alert.cpp
+```cpp
+#include "Alert.h"
+
+Alert::Alert(int inputPin, Blinker* blinker) {
+	this->inputPin = inputPin;
+	this->blinker = blinker;
+}
+
+void Alert::watch() {
+	if (digitalRead(inputPin) == HIGH){
+		blinker->alertBlink();
+	}
+	else {
+		blinker->off();
+	}
+}
+```
+
+Then we have <code>NormalBlinker</code> and <code>SecurityBlinker</code> which both extend from Blinker as we mentioned lets see the code for each:
+## NormalBlinker.cpp
+```cpp
+#include "NormalBlinker.h"
+
+NormalBlinker::NormalBlinker(int ledPin) : Blinker(ledPin) { }
+
+void NormalBlinker::alertBlink(){
+  Blinker::blinkBy(1000);
+}
+```
+
+## SecurityBlinker
+```cpp
+#include "SecurityBlinker.h"
+
+SecurityBlinker::SecurityBlinker(int ledPin) : Blinker(ledPin) { }
+
+void SecurityBlinker::alertBlink() {
+  Blinker::blinkBy(150);
+}
+```
+
+And finally the <code>main</code> class that we create object of each blinker in it and call alert:
 
 ## main
 
