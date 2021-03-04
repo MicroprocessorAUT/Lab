@@ -53,7 +53,7 @@ void Alert::watch() {
 ```
 The <code>Alert.h</code>, Note that for using an instance of <code>Blinker</code> class in <code>Alert</code>,
 member variable of type <code>Blinker*</code> is used, instead of <code>Blinker</code>.
-If we have used variable type of <code>Blinker</code> then call to <code>alertBlink()</code> member function would result in execution of 
+If we use variable type of <code>Blinker</code> then call to <code>alertBlink()</code> member function will result in execution of 
 base class's (aka parent, in this case Blinker) <code>alertBlink()</code> function.
 This is unwanted because we have defined <code>alertBlink()</code> in Blinker as virtual function to force derived classes (aka children, Normal and Security Blinkers)
 to override the function, so that child class's implementation of <code>alertBlink()</code> be called.
