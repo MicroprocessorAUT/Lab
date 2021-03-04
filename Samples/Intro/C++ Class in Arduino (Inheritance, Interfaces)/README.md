@@ -52,9 +52,9 @@ void Alert::watch() {
 	}
 }
 ```
-In <code>Alert.h</code>, note that for using an instance of <code>Blinker</code> class in <code>Alert</code>, instead of <code>Blinker</code>,use a member variable of type <code>Blinker*</code>.<br/>If we use variable type of <code>Blinker</code> then call to <code>alertBlink()</code> member function will result in execution of base class's (aka parent, in this case Blinker) <code>alertBlink()</code> function.
+In <code>Alert.h</code>, note that for using an instance of <code>Blinker</code> class in <code>Alert</code>, instead of <code>Blinker</code>,use a member variable of type <code>Blinker*</code>.<br/>If we use variable type of <code>Blinker</code> then call to <code>alertBlink()</code> member function will result in execution of base class's (aka parent, in this case Blinker) <code>alertBlink()</code> function.<br/>
 This is unwanted because we have defined <code>alertBlink()</code> in Blinker as virtual function to force derived classes (aka children, Normal and Security Blinkers)
-to override the function, so that child class's implementation of <code>alertBlink()</code>to be called.
+to override the function, so that child class's implementation of <code>alertBlink()</code>to be called.<br/>
 In case of not using pointer, we are actually creating new variable within <code>Alert</code> which is indeed of type base class itself, and NOT derived class types anymore. So calling methods like this,will execute base class function, and not child's implementation of the function.
  
 ## Alert.h
