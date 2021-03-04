@@ -31,6 +31,7 @@ void Blinker::off(){
 void Blinker::alertBlink() { blinkBy(500); }
 ```
 
+For alert we'll explain both <code>.cpp</code> and <code>.h</code> but don't forget to see other <code>.h</code> files
 The <code>Alert.cpp</code> call the alertBlink whenever we pushed the button:
 ## Alert.cpp
 ```cpp
@@ -49,6 +50,26 @@ void Alert::watch() {
 		blinker->off();
 	}
 }
+```
+The <code>Alert.h</code> blah blah (explain later)
+## Alert.h
+```cpp
+#pragma once
+
+#include <Arduino.h>
+
+#include "Blinker.h"
+
+class Alert {
+  private:
+    int inputPin = -1;
+    Blinker* blinker;
+    
+  public:
+    Alert(int inputPin, Blinker* blinker);
+
+    void watch();
+};
 ```
 
 Then we have <code>NormalBlinker</code> and <code>SecurityBlinker</code> which both extend from Blinker as we mentioned lets see the code for each:
