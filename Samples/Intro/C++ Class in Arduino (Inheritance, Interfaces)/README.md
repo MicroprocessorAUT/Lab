@@ -6,7 +6,7 @@ Like first intro part we create class for our components and use them in the mai
 
 Lets take a brief look:
 
-The <code>Blinker.cpp</code> has a function which turn the LED on and off with some delay that get in the input look the cpp file below
+The <code>Blinker.cpp</code> has a function which turns LED on and off with some delay that is given in the input.Look at the cpp file below:
 
 ## Blinker.cpp
 ```cpp
@@ -31,8 +31,9 @@ void Blinker::off(){
 void Blinker::alertBlink() { blinkBy(500); }
 ```
 
-For alert we'll explain both <code>.cpp</code> and <code>.h</code> but don't forget to see other <code>.h</code> files
-The <code>Alert.cpp</code> call the alertBlink whenever we pushed the button:
+For alert we'll explain both <code>.cpp</code> and <code>.h</code> but don't forget to see other <code>.h</code> files.
+
+The <code>Alert.cpp</code> calls the alertBlink whenever we push the button:
 ## Alert.cpp
 ```cpp
 #include "Alert.h"
